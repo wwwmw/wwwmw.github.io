@@ -22,7 +22,7 @@
             margin: 2rem auto;
             padding: 0 20px;
         }
-
+       
         .header {
             text-align: center;
             margin-bottom: 3rem;
@@ -133,6 +133,37 @@
                 grid-template-columns: 1fr;
             }
         }
+/* 新增弹窗样式 */
+        .payment-modal {
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+            z-index: 1000;
+            display: none; /* 默认隐藏 */
+        }
+
+        .modal-mask {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            z-index: 999;
+        }
+
+        .countdown {
+            color: #ff4757;
+            font-size: 1.2em;
+            margin: 1rem 0;
+        }
     </style>
 </head>
 <body>
@@ -157,7 +188,7 @@
                     <li>7×24小时支持</li>
                     <li>每月更新</li>
                 </ul>
-                <a href="https://sk.bluekins.top" class="btn">立即订购</a>
+                <a href="#" class="btn" onclick="showPaymentModal()">立即订购</a>
             </div>
 
             <!-- 季度套餐 -->
@@ -174,7 +205,7 @@
                     <li>优先客服支持</li>
                     <li>专属定制模板</li>
                 </ul>
-                <a href="https://sk.bluekins.top" class="btn">立即订购</a>
+                <a href="#" class="btn" onclick="showPaymentModal()">立即订购</a>
             </div>
 
             <!-- 年度套餐 -->
@@ -191,9 +222,49 @@
                     <li>VIP专属服务</li>
                     <li>免费升级特权</li>
                 </ul>
-                <a href="https://sk.bluekins.top" class="btn">立即订购</a>
-            </div>
+                <a href="#" class="btn" onclick="showPaymentModal()">立即订购</a>
+            </div>  
+            <!-- 其他套餐结构类似 -->
         </div>
     </div>
+  <!-- 付款弹窗 -->
+    <div class="modal-mask" id="modalMask"></div>
+    <div class="payment-modal" id="paymentModal">
+        <h3>⚠️ 付款确认</h3>
+        <p>即将进入付款页面，请仔细核对金额</p>
+        <p>请不要多付或者少付，谢谢合作！</p>
+        <div class="countdown" id="countdown">5秒后自动跳转...</div>
+    </div>
+
+    <script>
+        // 弹窗显示函数
+        function showPaymentModal() {
+            // 显示遮罩和弹窗
+            document.getElementById('modalMask').style.display = 'block';
+            document.getElementById('paymentModal').style.display = 'block';
+            
+            // 倒计时逻辑
+            let seconds = 5;
+            const countdownElement = document.getElementById('countdown');
+            
+            const timer = setInterval(() => {
+                seconds--;
+                countdownElement.innerHTML = `${seconds}秒后自动跳转...`;
+                
+                if(seconds <= 0) {
+                    clearInterval(timer);
+                    window.location.href = 'https://sk.bluekins.top';
+                }
+            }, 1000);
+
+            return false; // 阻止默认链接跳转
+        }
+
+        // 绑定所有按钮点击事件
+        document.querySelectorAll('.btn').forEach(button => {
+            button.onclick = showPaymentModal;
+        });
+    </script>
+
 </body>
 </html>
