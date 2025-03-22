@@ -411,6 +411,40 @@
             <!-- 其他套餐结构类似 -->
         </div>
     </div>
+    <!-- 微信跳转提示 -->
+<div id="weixin-tip" style="display: none;">
+    <div style="position: fixed; top:0; left:0; right:0; bottom:0; background: rgba(0,0,0,0.8); z-index: 99999;">
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: #fff;">
+            <div style="font-size: 18px; margin-bottom: 20px;">
+                <svg t="1717663310659" viewBox="0 0 1024 1024" version="1.1" xmlns="http://www.w3.org/2000/svg" p-id="2383" width="64" height="64"><path d="M512 64a448 448 0 1 1 0 896 448 448 0 0 1 0-896z m0 83.2a364.8 364.8 0 1 0 0 729.6 364.8 364.8 0 0 0 0-729.6zM512 288a38.4 38.4 0 0 1 38.4 38.4v268.8a38.4 38.4 0 0 1-76.8 0V326.4A38.4 38.4 0 0 1 512 288z m0 345.6a44.8 44.8 0 1 1 0 89.6 44.8 44.8 0 0 1 0-89.6z" fill="#FF4949" p-id="2384"></path></svg>
+            </div>
+            <p style="font-size: 16px; line-height: 1.6; margin: 0 20px;">检测到您在微信内访问<br>请点击右上角 <span style="color: #FFCC00;">•••</span> 按钮<br>选择「在浏览器打开」</p>
+        </div>
+    </div>
+</div>
+
+<script>
+// 微信浏览器检测
+function isWeixinBrowser() {
+    var ua = navigator.userAgent.toLowerCase();
+    return /micromessenger/.test(ua);
+}
+
+// 显示提示
+if(isWeixinBrowser()) {
+    document.getElementById('weixin-tip').style.display = 'block';
+    
+    // 禁止页面滚动
+    document.body.style.overflow = 'hidden';
+    document.body.style.height = '100%';
+    
+    // 禁用触摸事件
+    document.addEventListener('touchmove', function(e) {
+        e.preventDefault();
+    }, { passive: false });
+}
+</script>
+    
   <!-- 付款弹窗 -->
     <div class="modal-mask" id="modalMask"></div>
     <div class="payment-modal" id="paymentModal">
