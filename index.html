@@ -454,29 +454,24 @@
 </div>
 
 <script>
-// 动态调整箭头位置（针对不同设备）
-function adjustArrowPosition() {
-    const arrow = document.querySelector('#weixin-tip > div:first-child');
-    if (window.innerWidth <= 375) { // iPhone小屏适配
-        arrow.style.right = '8px';
-        arrow.style.top = '50px';
-    } else {
-        arrow.style.right = '5%';
-        arrow.style.top = '12%';
-    }
+// 微信浏览器检测
+function isWeixinBrowser() {
+    var ua = navigator.userAgent.toLowerCase();
+    return /micromessenger/.test(ua);
 }
 
-// 微信检测逻辑
-if(/micromessenger/.test(navigator.userAgent.toLowerCase())) {
+// 显示提示
+if(isWeixinBrowser()) {
     document.getElementById('weixin-tip').style.display = 'block';
+    
+    // 禁止页面滚动
     document.body.style.overflow = 'hidden';
-    adjustArrowPosition();
+    document.body.style.height = '100%';
     
-    // 添加窗口大小监听
-    window.addEventListener('resize', adjustArrowPosition);
-    
-    // 禁用滚动
-    document.addEventListener('touchmove', e => e.preventDefault(), { passive: false });
+    // 禁用触摸事件
+    document.addEventListener('touchmove', function(e) {
+        e.preventDefault();
+    }, { passive: false });
 }
 </script>
     
