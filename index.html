@@ -414,26 +414,22 @@
     <!-- 微信跳转提示 -->
 <div id="weixin-tip" style="display: none;">
     <div style="position: fixed; top:0; left:0; right:0; bottom:0; background: rgba(0,0,0,0.8); z-index: 99999;">
-        <!-- 优化后的箭头容器 -->
-        <div style="position: absolute; top: 1%; right: 8%; width: 60px; height: 60px;">
-            <svg viewBox="0 0 64 64" style="transform: rotate(0deg);">
-                <!-- 主箭头线 -->
-                <path d="M5 59L59 5" 
+        <!-- 动态箭头容器 -->
+        <div style="position: absolute; top: 1%; right: 8%; width: 80px; height: 80px;">
+            <svg viewBox="0 0 100 100" style="animation: pointGuide 2s infinite;">
+                <path d="M20 80L80 20" 
                       fill="none" 
                       stroke="#FFCC00" 
                       stroke-width="4" 
-                      stroke-linecap="round"
-                      style="filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3));">
-                </path>
-                <!-- 箭头头部 -->
-                <path d="M50 5L59 5 59 14" 
+                      stroke-linecap="round"/>
+                <path d="M60 20L80 20 80 40" 
                       fill="none" 
                       stroke="#FFCC00" 
                       stroke-width="4" 
-                      stroke-linecap="round">
-                </path>
+                      stroke-linecap="round"/>
             </svg>
         </div>
+
 
         <!-- 优化后的内容区域 -->
         <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: #fff; max-width: 280px;">
@@ -454,24 +450,25 @@
 </div>
 
 <script>
-// 微信浏览器检测
-function isWeixinBrowser() {
-    var ua = navigator.userAgent.toLowerCase();
-    return /micromessenger/.test(ua);
-}
-
-// 显示提示
-if(isWeixinBrowser()) {
-    document.getElementById('weixin-tip').style.display = 'block';
+// 微信检测逻辑
+if(/micromessenger/i.test(navigator.userAgent)) {
+    const tip = document.getElementById('weixin-tip');
+    tip.style.display = 'block';
+    document.body.style.overflow = 'hidden';
+    
+    // 动态调整箭头位置
+    const adjustArrow = () => {
+        const arrow = tip.querySelector('div:first-child');
+        const isMobile = window.innerWidth <= 768;
+        arrow.style.right = isMobile ? '8px' : '5%';
+        arrow.style.top = isMobile ? '15%' : '12%';
+    }
+    
+    adjustArrow();
+    window.addEventListener('resize', adjustArrow);
     
     // 禁止页面滚动
-    document.body.style.overflow = 'hidden';
-    document.body.style.height = '100%';
-    
-    // 禁用触摸事件
-    document.addEventListener('touchmove', function(e) {
-        e.preventDefault();
-    }, { passive: false });
+    document.addEventListener('touchmove', e => e.preventDefault(), { passive: false });
 }
 </script>
     
