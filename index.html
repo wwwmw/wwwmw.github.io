@@ -317,13 +317,12 @@
                 grid-template-columns: 1fr;
             }
         }
-/* 新增弹窗样式 */
         .payment-modal {
             /* 新增尺寸控制 */
-    width: 280px;             /* 固定宽度 */
-    max-width: 90%;          /* 最大宽度为视口90%（响应式） */
-    height: 300px;           /* 固定高度 */
-    min-height: 200px;       /* 最小高度保障内容区域 */
+            width: 280px;
+            max-width: 90%; 
+            height: 300px;
+            min-height: 200px;
             position: fixed;
             top: 50%;
             left: 50%;
@@ -413,7 +412,6 @@
                 </ul>
                 <a href="#" class="btn" onclick="showPaymentModal()">立即订购</a>
             </div>  
-            <!-- 其他套餐结构类似 -->
         </div>
     </div>
     <!-- 微信跳转提示 -->
@@ -483,10 +481,10 @@ if(isWeixinBrowser()) {
   <!-- 付款弹窗 -->
     <div class="modal-mask" id="modalMask"></div>
     <div class="payment-modal" id="paymentModal">
-        <h3>⚠️ 付款确认</h3>
+        <center></center><h3>⚠️ 付款确认</h3>
         <p>即将进入付款页面<br/>请仔细核对金额</p>
         <p><b><font color="red">请不要多付或少付<br/>续好后请联系客服</font></b><br/>谢谢合作！</p>
-        <div class="countdown" id="countdown">6秒后自动跳转...</div>
+        <div class="countdown" id="countdown">6秒后自动跳转...</div><center/>
     </div>
 
     <script>
