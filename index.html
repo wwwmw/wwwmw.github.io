@@ -481,12 +481,13 @@ if(isWeixinBrowser()) {
   <!-- 付款弹窗 -->
     <div class="modal-mask" id="modalMask"></div>
     <div class="payment-modal" id="paymentModal">
-        <center><h3>⚠️ 付款确认</h3>
+        <div style="text-align: center;">
+        <h3>⚠️ 付款确认</h3>
         <p>即将进入付款页面<br/>请仔细核对金额</p>
         <p><b><font color="red">请不要多付或少付<br/>续好后请联系客服</font></b><br/>谢谢合作！</p>
-        <div class="countdown" id="countdown">6秒后自动跳转...</div><center/>
+        <div class="countdown" id="countdown">6秒后自动跳转...</div>
     </div>
-
+</div>
     <script>
         // 弹窗显示函数
         function showPaymentModal() {
