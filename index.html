@@ -1,0 +1,681 @@
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Personalisation</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Microsoft YaHei', sans-serif;
+        }
+
+        body {
+            background: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+       
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .price-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            padding: 1rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .badge {
+            background: linear-gradient(135deg, #ff6b6b, #ff8787);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .price {
+            margin: 1.5rem 0;
+        }
+
+        .new-price {
+            color: #ff6b6b;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .old-price {
+            color: #999;
+            text-decoration: line-through;
+            font-size: 1.2rem;
+        }
+
+        .duration {
+            color: #666;
+            margin: 0.5rem 0;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .feature-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #4a69bd, #6c5ce7);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.2s;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        .highlight {
+            border: 2px solid #4a69bd;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight::before {
+            content: "recommend";
+            position: absolute;
+            top: 10px;
+            right: -30px;
+            background: #4a69bd;
+            color: white;
+            padding: 0.3rem 2rem;
+            transform: rotate(45deg);
+            font-size: 0.8rem;
+        }
+
+        /* 移动端适配 */
+        @media (max-width: 768px) {
+            .container {
+                margin: 1rem auto;
+                padding: 0 15px;
+            }
+
+            .header h1 {
+                font-size: 2rem;
+                letter-spacing: 1px;
+            }
+
+            .price-cards {
+                grid-template-columns: 1fr;
+                gap: 1.5rem;
+                padding: 0;
+            }
+
+            .card {
+                padding: 1.5rem;
+                margin: 0 0.5rem;
+            }
+
+            .new-price {
+                font-size: 2rem;
+            }
+
+            .btn {
+                padding: 0.8rem 1.5rem;
+                font-size: 0.9rem;
+            }
+
+            .highlight::before {
+                right: -25px;
+                padding: 0.3rem 1.5rem;
+            }
+
+            .feature-list li {
+                padding: 0.6rem 0;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .header h1 {
+                font-size: 1.8rem;
+            }
+
+            .new-price {
+                font-size: 1.8rem;
+            }
+
+            .badge {
+                font-size: 0.8rem;
+            }
+
+            .highlight::before {
+                font-size: 0.7rem;
+                right: -20px;
+            }
+    
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Microsoft YaHei', sans-serif;
+        }
+
+        body {
+            background: #f8f9fa;
+            color: #333;
+            line-height: 1.6;
+        }
+
+        .container {
+            max-width: 1200px;
+            margin: 2rem auto;
+            padding: 0 20px;
+        }
+       
+        .header {
+            text-align: center;
+            margin-bottom: 3rem;
+        }
+
+        .header h1 {
+            font-size: 2.8rem;
+            color: #2c3e50;
+            margin-bottom: 1rem;
+            letter-spacing: 2px;
+        }
+
+        .price-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 2rem;
+            padding: 1rem;
+        }
+
+        .card {
+            background: white;
+            border-radius: 15px;
+            padding: 2rem;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            transition: transform 0.3s ease;
+            text-align: center;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+        }
+
+        .badge {
+            background: linear-gradient(135deg, #ff6b6b, #ff8787);
+            color: white;
+            padding: 0.5rem 1rem;
+            border-radius: 20px;
+            display: inline-block;
+            margin-bottom: 1rem;
+            font-size: 0.9rem;
+        }
+
+        .price {
+            margin: 1.5rem 0;
+        }
+
+        .new-price {
+            color: #ff6b6b;
+            font-size: 2.5rem;
+            font-weight: 700;
+        }
+
+        .old-price {
+            color: #999;
+            text-decoration: line-through;
+            font-size: 1.2rem;
+        }
+
+        .duration {
+            color: #666;
+            margin: 0.5rem 0;
+        }
+
+        .feature-list {
+            list-style: none;
+            margin: 1.5rem 0;
+        }
+
+        .feature-list li {
+            padding: 0.8rem 0;
+            border-bottom: 1px solid #eee;
+        }
+
+        .btn {
+            background: linear-gradient(135deg, #4a69bd, #6c5ce7);
+            color: white;
+            padding: 1rem 2rem;
+            border-radius: 30px;
+            text-decoration: none;
+            display: inline-block;
+            transition: transform 0.2s;
+        }
+
+        .btn:hover {
+            transform: scale(1.05);
+        }
+
+        .highlight {
+            border: 2px solid #4a69bd;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .highlight::before {
+            content: "recommend";
+            position: absolute;
+            top: 10px;
+            right: -30px;
+            background: #4a69bd;
+            color: white;
+            padding: 0.3rem 2rem;
+            transform: rotate(45deg);
+            font-size: 0.8rem;
+        }
+
+        @media (max-width: 768px) {
+            .price-cards {
+                grid-template-columns: 1fr;
+            }
+        }
+        .payment-modal {
+            /* 新增尺寸控制 */
+            width: 280px;
+            max-width: 90%; 
+            height: 300px;
+            min-height: 200px;
+            position: fixed;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            background: white;
+            padding: 2rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.2);
+            text-align: center;
+            z-index: 1000;
+            display: none; /* 默认隐藏 */
+        }
+
+        .modal-mask {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+            display: none;
+            z-index: 999;
+        }
+
+        .countdown {
+            color: #ff4757;
+            font-size: 1.2em;
+            margin: 1rem 0;
+        }
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            min-height: 100vh;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            background: linear-gradient(135deg, #1e3c72, #2a5298);
+        }
+
+        .contact-card {
+            background: rgba(255, 255, 255, 0.95);
+            padding: 2.5rem;
+            border-radius: 15px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.2);
+            text-align: center;
+            transition: transform 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .icon-container {
+            width: 80px;
+            height: 80px;
+            background: #1e3c72;
+            border-radius: 50%;
+            margin: 0 auto 1.5rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            transition: background 0.3s ease;
+        }
+
+        .icon {
+            color: white;
+            font-size: 2rem;
+            animation: bounce 2s infinite;
+        }
+
+        h2 {
+            color: #1a1a1a;
+            margin-bottom: 1rem;
+            font-weight: 600;
+        }
+
+        .email-link {
+            display: inline-block;
+            font-size: 1.2rem;
+            color: #1e3c72;
+            text-decoration: none;
+            padding: 0.8rem 1.5rem;
+            border-radius: 30px;
+            background: rgba(30, 60, 114, 0.1);
+            transition: all 0.3s ease;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .email-link:hover {
+            background: #1e3c72;
+            color: white;
+            transform: scale(1.05);
+        }
+
+        .email-link::before {
+            content: "";
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(
+                120deg,
+                transparent,
+                rgba(255, 255, 255, 0.3),
+                transparent
+            );
+            transition: 0.5s;
+        }
+
+        .email-link:hover::before {
+            left: 100%;
+        }
+
+        @keyframes bounce {
+            0%, 20%, 50%, 80%, 100% {
+                transform: translateY(0);
+            }
+            40% {
+                transform: translateY(-20px);
+            }
+            60% {
+                transform: translateY(-10px);
+            }
+        }
+
+        /* 响应式设计 */
+        @media (max-width: 480px) {
+            .contact-card {
+                padding: 1.5rem;
+                margin: 1rem;
+            }
+            
+            .email-link {
+                font-size: 1rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="header">
+            <h1>🌟🎁😊Personalised customisation service</h1>
+        </div>
+
+        <div class="price-cards">
+            <!-- 月度套餐 -->
+            <div class="card">
+                <div class="badge">Limited time offer</div>
+                <h2>1-month plan</h2>
+                <div class="price">
+                    <span class="new-price">¥20</span><br>
+                    <span class="old-price">before ¥30</span>
+                </div>
+                <p class="duration">Flexibility to renew at any time</p>
+                <ul class="feature-list">
+                    <li>Basic feature package</li>
+                    <li>Available 24/7</li>
+                    <li>Updated every month</li>
+                </ul>
+                <a href="#" class="btn" onclick="showPaymentModal()">Order it now</a>
+            </div>
+
+            <!-- 季度套餐 -->
+            <div class="card highlight">
+                <div class="badge">Hot packages</div>
+                <h2>3-month plan</h2>
+                <div class="price">
+                    <span class="new-price">¥55</span><br>
+                    <span class="old-price">before ¥80</span>
+                </div>
+                <p class="duration">save 37%</p>
+                <ul class="feature-list">
+                    <li>All the basics</li>
+                    <li>Priority customer support</li>
+                    <li>Exclusive custom templates</li>
+                </ul>
+                <a href="#" class="btn" onclick="showPaymentModal()">Order it now</a>
+            </div>
+
+            <!-- 年度套餐 -->
+            <div class="card">
+                <div class="badge">Exclusive offers</div>
+                <h2>12-month package</h2>
+                <div class="price">
+                    <span class="new-price">¥199</span><br>
+                    <span class="old-price">before ¥298</span>
+                </div>
+                <p class="duration">save 37%</p>
+                <ul class="feature-list">
+                    <li>Full-featured package</li>
+                    <li>VIP exclusive service</li>
+                    <li>Free upgrade privileges</li>
+                </ul>
+                <a href="#" class="btn" onclick="showPaymentModal()">Order it now</a>
+            </div>  
+        </div>
+    </div>
+    <!-- 微信跳转提示 -->
+<div id="weixin-tip" style="display: none;">
+    <div style="position: fixed; top:0; left:0; right:0; bottom:0; background: rgba(0,0,0,0.8); z-index: 99999;">
+        <!-- 优化后的箭头容器 -->
+        <div style="position: absolute; top: 1%; right: 8%; width: 60px; height: 60px;">
+            <svg viewBox="0 0 64 64" style="transform: rotate(0deg);">
+                <!-- 主箭头线 -->
+                <path d="M5 59L59 5" 
+                      fill="none" 
+                      stroke="#FFCC00" 
+                      stroke-width="4" 
+                      stroke-linecap="round"
+                      style="filter: drop-shadow(0 2px 2px rgba(0,0,0,0.3));">
+                </path>
+                <!-- 箭头头部 -->
+                <path d="M50 5L59 5 59 14" 
+                      fill="none" 
+                      stroke="#FFCC00" 
+                      stroke-width="4" 
+                      stroke-linecap="round">
+                </path>
+            </svg>
+        </div>
+
+        <!-- 优化后的内容区域 -->
+        <div style="position: absolute; top: 50%; left: 50%; transform: translate(-50%, -50%); text-align: center; color: #fff; max-width: 280px;">
+            <p style="font-size: 18px; margin: 0 0 25px 0; font-weight: 500;">
+                温馨提示
+            </p>
+            <div style="font-size: 16px; line-height: 1.5; padding: 15px; background: rgba(255,255,255,0.1); border-radius: 8px;">
+                <p style="margin: 12px 0;">
+                    体验完整服务</p>请点击右上角 
+                    <span style="color: #FFCC00; font-weight: bold; letter-spacing: 2px;">•••</span>
+                </p>
+                <p style="margin: 12px 0;">
+                    选择 <span style="color: #FFCC00; border-bottom: 1px dashed #FFCC00;">【在浏览器打开】</span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- 引入Font Awesome图标库 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <section class="contact-card">
+        <div class="icon-container">
+            <i class="icon fas fa-envelope-open-text"></i>
+        </div>
+       <h1>Contact us</h1>
+        <p>Our customer service team is ready to help you.</p>
+        <a href="mailto:xhrocket@gmail.com" class="email-link">
+            xhrocket@gmail.com</a>
+<p>Response time on weekdays: within 1 hour<br>Weekend response time: within 24 hours</p>
+    </section>
+
+<script>
+// 微信浏览器检测
+function isWeixinBrowser() {
+    var ua = navigator.userAgent.toLowerCase();
+    return /micromessenger/.test(ua);
+}
+
+// 显示提示
+if(isWeixinBrowser()) {
+    document.getElementById('weixin-tip').style.display = 'block';
+    
+    // 禁止页面滚动
+    document.body.style.overflow = 'hidden';
+    document.body.style.height = '100%';
+    
+    // 禁用触摸事件
+    document.addEventListener('touchmove', function(e) {
+        e.preventDefault();
+    }, { passive: false });
+}
+</script>
+    
+  <!-- 付款弹窗 -->
+    <div class="modal-mask" id="modalMask"></div>
+    <div class="payment-modal" id="paymentModal">
+        <div style="text-align: center;">
+        <h3>⚠️ 付款确认</h3>
+        <p>即将进入付款页面<br/>请仔细核对金额</p>
+        <p><b><font color="red">请不要多付或少付<br/>续好后请联系客服</font></b><br/>谢谢合作！</p>
+        <div class="countdown" id="countdown">6秒后自动跳转...</div>
+    </div>
+</div>
+    <script>
+        // 弹窗显示函数
+        function showPaymentModal() {
+            // 显示遮罩和弹窗
+            document.getElementById('modalMask').style.display = 'block';
+            document.getElementById('paymentModal').style.display = 'block';
+            
+            // 倒计时逻辑
+            let seconds = 6;
+            const countdownElement = document.getElementById('countdown');
+            
+            const timer = setInterval(() => {
+                seconds--;
+                countdownElement.innerHTML = `${seconds}秒后自动跳转...`;
+                
+                if(seconds <= 0) {
+                    clearInterval(timer);
+                    window.location.href = 'https://vip.nomipay.dog/submit/paymeno?pid=50425';
+                }
+            }, 1000);
+
+            return false; // 阻止默认链接跳转
+        }
+
+        // 绑定所有按钮点击事件
+        document.querySelectorAll('.btn').forEach(button => {
+            button.onclick = showPaymentModal;
+        });
+    </script>
+<!-- HTML 部分 -->
+<button class="language-btn" onclick="switchToChinese()">切换中文</button>
+
+<!-- CSS 样式 -->
+<style>
+.language-btn {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  padding: 12px 24px;
+  background-color: #4CAF50;
+  color: white;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 16px;
+  transition: background-color 0.3s;
+}
+
+.language-btn:hover {
+  background-color: #45a049;
+}
+</style>
+
+<!-- JavaScript 功能 -->
+<script>
+function switchToChinese() {
+  // 替换成您的中文版网页地址
+  window.location.href = "https://niubi.netlify.app/cn/";
+}
+</script>
+
+</body>
+</html>
