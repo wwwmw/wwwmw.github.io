@@ -1,0 +1,245 @@
+
+<!DOCTYPE html>
+<html lang="zh-CN">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个性化定制服务</title>
+    
+    <!-- 引入字体图标 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    
+    <style>
+        /* 基础重置 */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', system-ui, sans-serif;
+        }
+
+        /* 主题配色 */
+        :root {
+            --primary: #2196F3;  /* 主蓝色 */
+            --dark: #1A1A1A;     /* 深色背景 */
+            --light: #FFFFFF;    /* 白色文字 */
+            --gradient: linear-gradient(135deg, #2196F3 0%, #4CAF50 100%); /* 渐变效果 */
+        }
+
+        body {
+            background-color: var(--dark);
+            color: var(--light);
+            line-height: 1.6;
+            background: rgba(0, 0, 0, 1);
+        }
+
+        /* 导航样式 */
+        .navbar {
+            padding: 1.5rem 5%;
+            background: rgba(0, 0, 0, 1);
+            position: fixed;
+            width: 100%;
+            top: 0;
+            z-index: 1000;
+        }
+
+        .logo {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: var(--light);
+            text-decoration: none;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        /* 主要内容容器 */
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 8rem 5% 4rem;
+        }
+
+        /* 英雄区域布局 */
+        .hero {
+            display: flex;
+            align-items: center;
+            gap: 4rem;
+            flex-wrap: wrap;
+        }
+
+        .content {
+            flex: 1 1 50%;
+            min-width: 300px;
+        }
+
+        .app-image {
+            flex: 1 1 40%;
+            text-align: center;
+        }
+
+        .app-image img {
+            max-width: 100%;
+            height: auto;
+            border-radius: 20px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        /* 下载按钮样式 */
+        .download-buttons {
+            margin: 2rem 0;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1rem;
+        }
+
+        .btn {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2rem;
+            border-radius: 12px;
+            text-decoration: none;
+            color: white;
+            transition: transform 0.3s ease;
+            gap: 0.8rem;
+            font-size: 1rem;
+        }
+
+        .btn:hover {
+            transform: translateY(-3px);
+        }
+
+        .ios { background: #222; }
+        .android { background: #3DDC84; }
+        .mac { background: #0066CC; }
+        .windows { background: #3378D4; }
+
+        /* 响应式设计 */
+        @media (max-width: 768px) {
+            .container {
+                padding-top: 6rem;
+            }
+
+            .hero {
+                flex-direction: column;
+                text-align: center;
+            }
+
+            .download-buttons {
+                grid-template-columns: 1fr;
+            }
+
+            .btn {
+                padding: 1rem;
+            }
+        }
+
+        /* 文字样式 */
+        h1 {
+            font-size: 3rem;
+            margin-bottom: 1.5rem;
+            line-height: 1.2;
+        }
+
+        p {
+            font-size: 1.2rem;
+            color: #CCCCCC;
+            margin-bottom: 2rem;
+        }
+
+        /* 动画效果 */
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
+        .animated {
+            animation: fadeIn 0.8s ease-out forwards;
+        }
+    </style>
+</head>
+<body>
+    <!-- 导航 -->
+    <nav class="navbar">
+        <a href="#" class="logo">
+            <!-- <i class="fas fa-satellite"></i> -->
+            <img src="https://hyhycw.oss-cn-shenzhen.aliyuncs.com/cw/logo.png">
+            个性化定制
+        </a>
+    </nav>
+
+    <!-- 主要内容 -->
+    <div class="container">
+        <section class="hero">
+            <div class="content animated">
+                <h1>个性化定制</h1>
+                <h6 style="color: grey;">该软件仅用于技术学习</h6>
+                <p>你知道，有些鸟儿是注定不会被关在牢笼里的，它们的每一片羽毛都闪耀着自由的光辉。《肖申克的救赎》</p>
+                
+                <!-- 下载按钮 -->
+                <div class="download-buttons">
+                    <a class="btn android" href="https://cn-sy1.rains3.com/coke/v2rayNG_1.8.6.apk">
+                        <i class="fab fa-android"></i>
+                        Android 下载
+                    </a>
+                    <a class="btn mac" href="https://file.buyzur.com/tutorial/mac/clash/ClashX.dmg">
+                        <i class="fab fa-apple"></i>
+                        macOS 下载
+                    </a>
+                    <a class="btn windows" href="https://file.buyzur.com/tutorial/windows/v2ray/v2rayN-With-Core.zip">
+                        <i class="fab fa-windows"></i>
+                        Windows 下载
+                    </a>
+                </div>
+            </div>
+
+            <!-- 应用截图占位 -->
+            <div class="app-image animated" style="animation-delay: 0.2s">
+                <img src="https://hyhycw.oss-cn-shenzhen.aliyuncs.com/cw/placehold.png" alt="蛋播星球界面预览">
+            </div>
+        </section>
+        </br>
+        </br>
+        </br>
+        </br>
+        <div class="animated">
+            <h3>人生总是这么苦，还是只有童年如此？</h3>
+            <p>《这个杀手不太冷》</p>
+            <h3>一个人总要走陌生的路，看陌生的风景，听陌生的歌，然后在某个不经意的瞬间，你会发现，原本是费尽心机想要忘记的事情真的就那么忘记了。</h3>
+            <p>《蓝莓之夜》</p>
+            <h3>你要尽全力保护你的梦想。那些嘲笑你梦想的人，他们注定失败，他们想把你变成和他们一样。我坚信，只要心中有梦想，我就会与众不同。你也是。</h3>
+            <p>《当幸福来敲门》</p>
+            <h3>罐头是在1810年发明出来的，可是，开罐器却在1858年才被发明出来。很奇怪吧，有时候就是这样，重要的东西有时也会迟来一步，无论是爱情还是生活。</h3>
+            <p>《最完美的离婚》</p> 
+        </div>
+    </div>
+    <!-- <script src="https://api.vvhan.com/api/script/snow"></script> -->
+    <script type="text/javascript" src="https://api.zxki.cn/api/yhpl" ></script>
+    <!-- <script src="https://api.vvhan.com/api/script/bolang"></script> -->
+    <script>
+        function download(lanzouUrl) {
+            // const lanzouUrl = "https://danboxq.lanzouq.com/ixdp306kwi7e";
+            // const password = ""; // 无密码则留空
+            // 调用第三方解析API
+            fetch(`https://api.zxki.cn/api/lzy?url=${encodeURIComponent(lanzouUrl)}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (data.data.length > 0) {
+                        const dict = data.data[0];
+                        const link = document.createElement('a');
+                        link.href = dict.download;
+                        link.download = 'danbo.apk';
+                        link.style.display = 'none';
+                        document.body.appendChild(link);
+                        link.click();
+                        document.body.removeChild(link);
+                    } else {
+                        alert('解析失败，请检查链接或密码！');
+                    }
+                })
+                .catch(error => console.error('API请求失败：', error));
+}
+</script>
+</body>
+</html>
